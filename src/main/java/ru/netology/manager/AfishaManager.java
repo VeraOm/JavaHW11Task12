@@ -2,20 +2,24 @@ package ru.netology.manager;
 
 import ru.netology.domain.AfishaItem;
 import ru.netology.domain.PurchaseItem;
+import ru.netology.repository.AfishaRepository;
 
 public class AfishaManager {
 
-    private AfishaItem[] items = new AfishaItem[0];
+    private AfishaRepository repository;
     private int outItemCount = 10;
 
-    public AfishaManager() {
+    public AfishaManager(AfishaRepository repository) {
+        this.repository=repository;
     }
 
-    public AfishaManager(int outItemCount) {
+    public AfishaManager(AfishaRepository repository, int outItemCount) {
+        this.repository=repository;
         this.outItemCount = outItemCount;
     }
 
     public AfishaItem[] getLast() {
+        AfishaItem[] items=repository.findAll();
         int count = items.length > outItemCount ? outItemCount : items.length;
         AfishaItem[] result = new AfishaItem[count];
         for (int i = 0; i < count; i++) {
@@ -26,16 +30,11 @@ public class AfishaManager {
     }
 
     public AfishaItem[] getAll() {
-        return items;
+        return repository.findAll();
     }
 
     public void add(AfishaItem item) {
-        int length = items.length + 1;
-        AfishaItem[] tmp = new AfishaItem[length];
-        System.arraycopy(items, 0, tmp, 0, items.length);
-        int lastIndex = tmp.length - 1;
-        tmp[lastIndex] = item;
-        items = tmp;
+        repository.save(item);
     }
 
 }
