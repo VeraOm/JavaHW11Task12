@@ -59,6 +59,16 @@ class AfishaRepositoryTest {
     }
 
     @Test
+    void removeByNotExistIdTest() {
+        repository.removeById(10);
+
+        AfishaItem[] actual=repository.findAll();
+        AfishaItem[] expected=new AfishaItem[]{item1, item2, item3, item4, item5};
+
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
     void removeAll() {
         repository.removeAll();
 

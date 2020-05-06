@@ -43,11 +43,9 @@
                 <version>2.22.2</version>
                 <configuration>
                     <failIfNoTests>true</failIfNoTests>
-<!--
-                    <includes>
-                        <include>**/*Test*.java</include>
-                    </includes>
--->
+                    <excludes>
+                        <exclude>**/CartTest*.java</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
             <plugin>

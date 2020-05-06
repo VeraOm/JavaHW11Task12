@@ -17,7 +17,6 @@ class AfishaManagerTest {
     @Mock
     private AfishaRepository repository;
 
-//    @InjectMocks
     private AfishaManager manager;
 
     private AfishaItem item1 = new AfishaItem(1, "first", "http://", "");
@@ -25,6 +24,32 @@ class AfishaManagerTest {
     private AfishaItem item3 = new AfishaItem(3, "third", "http://", "");
     private AfishaItem item4 = new AfishaItem(4, "fourth", "http://", "");
     private AfishaItem item5 = new AfishaItem(5, "fifth", "http://", "");
+
+    @Test
+    void getLastLessZeroOutCount() {
+        AfishaItem[] mockCover = new AfishaItem[]{item1, item2, item3, item4, item5};
+        doReturn(mockCover).when(repository).findAll();
+
+        manager = new AfishaManager(repository, -1);
+
+        AfishaItem[] expected = new AfishaItem[0];
+        AfishaItem[] actual = manager.getLast();
+
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void getLastZeroOutCount() {
+        AfishaItem[] mockCover = new AfishaItem[]{item1, item2, item3, item4, item5};
+        doReturn(mockCover).when(repository).findAll();
+
+        manager = new AfishaManager(repository, 0);
+
+        AfishaItem[] expected = new AfishaItem[0];
+        AfishaItem[] actual = manager.getLast();
+
+        assertArrayEquals(expected, actual);
+    }
 
     @Test
     void getLastLessOutCount() {
