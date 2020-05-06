@@ -23,6 +23,28 @@ class AfishaManagerTest {
     }
 
     @Test
+    void getLastLessZeroOutCount() {
+        manager = new AfishaManager(-1);
+        fillFirstData();
+
+        AfishaItem[] expected = new AfishaItem[0];
+        AfishaItem[] actual = manager.getLast();
+
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void getLastZeroOutCount() {
+        manager = new AfishaManager(0);
+        fillFirstData();
+
+        AfishaItem[] expected = new AfishaItem[0];
+        AfishaItem[] actual = manager.getLast();
+
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
     void getLastLessOutCount() {
         manager = new AfishaManager();
         fillFirstData();
