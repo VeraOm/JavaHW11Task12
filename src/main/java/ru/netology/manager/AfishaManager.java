@@ -12,7 +12,9 @@ public class AfishaManager {
     }
 
     public AfishaManager(int outItemCount) {
-        this.outItemCount = outItemCount;
+        if (outItemCount >= 0) {
+            this.outItemCount = outItemCount;
+        }
     }
 
     public AfishaItem[] getLast() {
