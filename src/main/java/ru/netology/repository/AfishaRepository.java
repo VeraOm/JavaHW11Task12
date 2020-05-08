@@ -6,11 +6,11 @@ public class AfishaRepository {
 
     private AfishaItem[] items = new AfishaItem[0];
 
-    public AfishaItem[] findAll(){
+    public AfishaItem[] findAll() {
         return items;
     }
 
-    public void save(AfishaItem item){
+    public void save(AfishaItem item) {
         int length = items.length + 1;
         AfishaItem[] tmp = new AfishaItem[length];
         System.arraycopy(items, 0, tmp, 0, items.length);
@@ -19,9 +19,9 @@ public class AfishaRepository {
         items = tmp;
     }
 
-    public AfishaItem findById(int id){
-        for(AfishaItem item: items){
-            if(item.getId()==id){
+    public AfishaItem findById(int id) {
+        for (AfishaItem item : items) {
+            if (item.getId() == id) {
                 return item;
             }
         }
@@ -41,7 +41,7 @@ public class AfishaRepository {
         items = tmp;
     }
 
-    public void removeAll(){
-        items=new AfishaItem[0];
+    public void removeAll() {
+        items = new AfishaItem[0];
     }
 }

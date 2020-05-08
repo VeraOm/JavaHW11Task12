@@ -10,16 +10,18 @@ public class AfishaManager {
     private int outItemCount = 10;
 
     public AfishaManager(AfishaRepository repository) {
-        this.repository=repository;
+        this.repository = repository;
     }
 
     public AfishaManager(AfishaRepository repository, int outItemCount) {
-        this.repository=repository;
-        this.outItemCount = outItemCount;
+        this.repository = repository;
+        if (outItemCount >= 0) {
+            this.outItemCount = outItemCount;
+        }
     }
 
     public AfishaItem[] getLast() {
-        AfishaItem[] items=repository.findAll();
+        AfishaItem[] items = repository.findAll();
         int count = items.length > outItemCount ? outItemCount : items.length;
         AfishaItem[] result = new AfishaItem[count];
         for (int i = 0; i < count; i++) {

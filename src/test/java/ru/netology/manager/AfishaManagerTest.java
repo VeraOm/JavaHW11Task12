@@ -24,15 +24,22 @@ class AfishaManagerTest {
     private AfishaItem item3 = new AfishaItem(3, "third", "http://", "");
     private AfishaItem item4 = new AfishaItem(4, "fourth", "http://", "");
     private AfishaItem item5 = new AfishaItem(5, "fifth", "http://", "");
+    private AfishaItem item6 = new AfishaItem(6, "sixth", "http://", "");
+    private AfishaItem item7 = new AfishaItem(7, "seventh", "http://", "");
+    private AfishaItem item8 = new AfishaItem(8, "eigth", "http://", "");
+    private AfishaItem item9 = new AfishaItem(9, "ninth", "http://", "");
+    private AfishaItem item10 = new AfishaItem(10, "tenth", "http://", "");
+    private AfishaItem item11 = new AfishaItem(11, "last", "http://", "");
+
 
     @Test
     void getLastLessZeroOutCount() {
-        AfishaItem[] mockCover = new AfishaItem[]{item1, item2, item3, item4, item5};
+        AfishaItem[] mockCover = new AfishaItem[]{item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11};
         doReturn(mockCover).when(repository).findAll();
 
         manager = new AfishaManager(repository, -1);
 
-        AfishaItem[] expected = new AfishaItem[0];
+        AfishaItem[] expected = new AfishaItem[]{item11, item10, item9, item8, item7, item6, item5, item4, item3, item2};
         AfishaItem[] actual = manager.getLast();
 
         assertArrayEquals(expected, actual);
@@ -71,7 +78,7 @@ class AfishaManagerTest {
         AfishaItem[] mockCover = new AfishaItem[]{item1, item2, item3, item4, item5};
         doReturn(mockCover).when(repository).findAll();
 
-        manager = new AfishaManager(repository,5);
+        manager = new AfishaManager(repository, 5);
 
         AfishaItem[] allItems = manager.getAll();
         AfishaItem[] expected = new AfishaItem[allItems.length];
@@ -91,7 +98,7 @@ class AfishaManagerTest {
         AfishaItem[] mockCover = new AfishaItem[]{item1, item2, item3, item4, item5};
         doReturn(mockCover).when(repository).findAll();
 
-        manager = new AfishaManager(repository,3);
+        manager = new AfishaManager(repository, 3);
 
         AfishaItem[] expected = new AfishaItem[]{item5, item4, item3};
         AfishaItem[] actual = manager.getLast();
